@@ -30,7 +30,7 @@ public class MenuActivity extends AppCompatActivity {
     }
     public void Symtoms (View View){
 
-        Intent symtons = new Intent(this, SymtomsActivity.class);
+        Intent symtons = new Intent(this, SymptomsActivity.class);
         startActivity(symtons);
 
 

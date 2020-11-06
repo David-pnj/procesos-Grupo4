@@ -9,8 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CovSin">
-        <activity android:name=".MapActivity"></activity>
-        <activity android:name=".SymtomsActivity" />
+        <activity android:name=".RecordActivity"></activity>
+        <activity android:name=".TracingActivity" />
+        <activity android:name=".SesionActivity" />
+        <activity android:name=".MapActivity" />
+        <activity android:name=".SymptomsActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".MenuActivity" />
