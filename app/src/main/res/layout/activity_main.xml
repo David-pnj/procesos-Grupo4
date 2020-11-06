@@ -7,6 +7,7 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/text1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!"
@@ -21,8 +22,18 @@
         android:id="@+id/imageButton"
         android:layout_width="68dp"
         android:layout_height="89dp"
+        android:adjustViewBounds="false"
         tools:layout_editor_absoluteX="327dp"
         tools:layout_editor_absoluteY="28dp"
         tools:srcCompat="@tools:sample/avatars" />
+
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="Menu"
+        android:text="Button"
+        tools:layout_editor_absoluteX="110dp"
+        tools:layout_editor_absoluteY="259dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
