@@ -40,8 +40,16 @@ public class RegisterActivity extends AppCompatActivity {
         return false;
     }
 
-    //Método para botones
-    public void Login (View View){
+    //Método para botones, DAVID SACO BOTONES MIENTRAS TRABAJABA POR EL ERROR Q LE DABA LO DELOS FICH INACABADOS
+    public void Sesion (View View){
+
+        Intent sesion = new Intent(this, LoginActivity.class);
+        startActivity(sesion);
+
+
+    }
+
+  /*  public void Login (View View){
 
         String archUsers [] = fileList();
 
@@ -60,4 +68,6 @@ public class RegisterActivity extends AppCompatActivity {
 
         }
     }
+    */
+
 }
