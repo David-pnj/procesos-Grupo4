@@ -14,4 +14,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="107dp"
+        android:layout_height="60dp"
+        android:onClick="Menu"
+        android:text="Back"
+        tools:layout_editor_absoluteX="267dp"
+        tools:layout_editor_absoluteY="481dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
