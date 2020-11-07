@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name" translatable="false">covSin</string>
+    <string name="login" translatable="false">Login</string>
+    <string name="register" translatable="false">Register</string>
+    <string name="symptoms" translatable="false">Síntomas</string>
+    <string name="map" translatable="false">Mapa</string>
+    <string name="menu" translatable="false">Menu</string>
+    <string name="menu_sesion" translatable="false">Sesión</string>
+    <string name="record" translatable="false">Historial</string>
+    <string name="tracing" translatable="false">Seguimiento</string>
+    <string name="iniciar" translatable="false">Iniciar</string>
+    <string name="user" translatable="false">Usuario</string>
+    <string name="pass" translatable="false">Contraseña</string>
+    <string name="itro_user" translatable="false">Intrduzca su usuario</string>
+    <string name="intro_pass" translatable="false">Intrduzca su contraseña</string>
+    <string name="btn_salir" translatable="false">Salir</string>
+    <string name="btn_guardar" translatable="false">Guardar</string>
+
 </resources>

@@ -1,25 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/bgregister">
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/record"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Historial"
-        app:layout_constraintBottom_toTopOf="@+id/textView6"
-        app:layout_constraintEnd_toStartOf="@+id/button6"
+        android:text="@string/record"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textHistorial"
+        app:layout_constraintEnd_toStartOf="@+id/btnSalir"
         app:layout_constraintHorizontal_bias="0.704"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.291" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/textHistorial"
         android:layout_width="397dp"
         android:layout_height="496dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -29,12 +32,12 @@
         app:layout_constraintVertical_bias="0.853" />
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/btnSalir"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="Sesion"
-        android:text="Salir"
-        app:layout_constraintBottom_toTopOf="@+id/textView6"
+        android:text="@string/btn_salir"
+        app:layout_constraintBottom_toTopOf="@+id/textHistorial"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.949"
         app:layout_constraintStart_toStartOf="parent"

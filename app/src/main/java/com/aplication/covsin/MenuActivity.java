@@ -13,11 +13,12 @@ public class MenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
     }
-        //Método para botones
-        public void Login (View View){
 
-            Intent login = new Intent(this, LoginActivity.class);
-            startActivity(login);
+    //Método para botones
+    public void Login (View View){
+
+        Intent login = new Intent(this, LoginActivity.class);
+        startActivity(login);
 
 
     }
