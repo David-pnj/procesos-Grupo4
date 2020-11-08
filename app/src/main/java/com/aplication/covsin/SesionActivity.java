@@ -8,10 +8,13 @@ import android.view.View;
 
 public class SesionActivity extends AppCompatActivity {
 
+    private String userLogin;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sesion);
+        userLogin = getIntent().getStringExtra("name");
     }
     public void Symtoms (View View){
 
@@ -30,6 +33,7 @@ public class SesionActivity extends AppCompatActivity {
     public void Tracing (View View){
 
         Intent tracing = new Intent(this, TracingActivity.class);
+        tracing.putExtra("name", userLogin);
         startActivity(tracing);
 
 
@@ -37,6 +41,7 @@ public class SesionActivity extends AppCompatActivity {
     public void Record (View View){
 
         Intent record = new Intent(this, RecordActivity.class);
+        record.putExtra("name", userLogin);
         startActivity(record);
 
 

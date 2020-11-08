@@ -2,23 +2,26 @@ package com.aplication.covsin;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
-
-import com.aplication.covsin.modules.Users;
-
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 
 
 public class RegisterActivity extends AppCompatActivity {
 
     private EditText userRe;
     private EditText passRe;
-    private Users userSave;
-
-
+    private String userSave;
+    private String passSave;
+    private final String fileNameUser = "Users.txt";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +30,28 @@ public class RegisterActivity extends AppCompatActivity {
 
         userRe = (EditText)findViewById(R.id.editUserRe);
         passRe = (EditText)findViewById(R.id.editPasswordRe);
-        userSave = new Users(String.valueOf(userRe), String.valueOf(passRe));
 
+    }
+
+    //Método para botones
+    public void Login (View View){
+
+        String archUsers [] = fileList();
+
+        if (archivoExiste(archUsers, fileNameUser)){
+
+            guardarUsuario();
+            Intent login = new Intent(this, LoginActivity.class);
+            startActivity(login);
+
+        } else{
+
+            crearFic();
+            guardarUsuario();
+            Intent login = new Intent(this, LoginActivity.class);
+            startActivity(login);
+
+        }
     }
 
     private boolean archivoExiste(String source [], String sourceName) {
@@ -40,34 +63,50 @@ public class RegisterActivity extends AppCompatActivity {
         return false;
     }
 
-    //Método para botones, DAVID SACO BOTONES MIENTRAS TRABAJABA POR EL ERROR Q LE DABA LO DELOS FICH INACABADOS
-    public void Sesion (View View){
-
-        Intent sesion = new Intent(this, LoginActivity.class);
-        startActivity(sesion);
-
-
-    }
-
-  /*  public void Login (View View){
-
-        String archUsers [] = fileList();
-
-        if (archivoExiste(archUsers, "Users.json")){
-
-            userSave.guardarUsuario(userSave);
-            Intent login = new Intent(this, LoginActivity.class);
-            startActivity(login);
-
-        } else{
-
-            userSave.crearFich();
-            userSave.guardarUsuario(userSave);
-            Intent login = new Intent(this, LoginActivity.class);
-            startActivity(login);
-
+    //Crear el fichero
+    public void crearFic(){
+        try {
+            OutputStreamWriter fout = new OutputStreamWriter(openFileOutput(fileNameUser, Context.MODE_PRIVATE));
+            fout.close();
+        } catch (Exception ex) {
+            Log.e("Ficheros", "Error al escribir fichero a memoria interna");
         }
     }
-    */
+
+
+    public void guardarUsuario(){
+        userSave = userRe.getText().toString();
+        passSave = passRe.getText().toString();
+        String lines = "";
+        String line = "";
+        int i = 0;
+
+        try {
+            InputStreamReader archivo = new InputStreamReader(openFileInput(fileNameUser));
+            BufferedReader br = new BufferedReader(archivo);
+            line = br.readLine();
+
+            while (line != null){
+                lines = lines + line +"\n";
+                line = br.readLine();
+
+            }
+            br.close();
+            archivo.close();
+
+            OutputStreamWriter fichUsers = new OutputStreamWriter(openFileOutput(fileNameUser, Context.MODE_PRIVATE));
+            if (lines != null ){
+                    fichUsers.write(lines);
+            }
+            fichUsers.write("usuario:"+userSave+"/pass:"+passSave);
+            fichUsers.flush();
+            fichUsers.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 
 }
