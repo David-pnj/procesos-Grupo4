@@ -98,7 +98,7 @@ public class RegisterActivity extends AppCompatActivity {
             if (lines != null ){
                     fichUsers.write(lines);
             }
-            fichUsers.write("usuario:"+userSave+" y pass:"+passSave);
+            fichUsers.write("usuario:"+userSave+"/pass:"+passSave);
             fichUsers.flush();
             fichUsers.close();
 

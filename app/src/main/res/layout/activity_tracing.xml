@@ -6,51 +6,15 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg02">
 
-    <Switch
-        android:id="@+id/switch39"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Dolor o presión en el pecho "
-        app:layout_constraintBottom_toTopOf="@+id/switch40"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.314"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.987" />
-
-    <Switch
-        android:id="@+id/switch36"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Erupciones cutáneas o pérdida del color"
-        app:layout_constraintBottom_toTopOf="@+id/textView16"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.526"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.966" />
-
-    <Switch
-        android:id="@+id/switch35"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Dolor de cabeza "
-        app:layout_constraintBottom_toTopOf="@+id/switch37"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.23"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.985" />
-
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/seguimiento"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Seguimiento"
+        android:text="@string/tracing"
         android:textColor="@color/black"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textView14"
+        app:layout_constraintBottom_toTopOf="@+id/habituales"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,56 +22,27 @@
         app:layout_constraintVertical_bias="0.605" />
 
     <TextView
-        android:id="@+id/textView14"
+        android:id="@+id/habituales"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Los síntomas más habituales:"
+        android:text="@string/habituales"
         android:textColor="@color/black"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/switch28"
+        app:layout_constraintBottom_toTopOf="@+id/fiebre"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.164"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.87" />
 
-    <TextView
-        android:id="@+id/textView15"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Otros síntomas menos comunes:"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/switch31"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.18"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.97" />
-
-    <TextView
-        android:id="@+id/textView16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Los síntomas graves:"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/switch38"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.133"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.984" />
-
     <Switch
-        android:id="@+id/switch28"
+        android:id="@+id/fiebre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Fiebre"
-        app:layout_constraintBottom_toTopOf="@+id/switch29"
+        android:showText="false"
+        android:text="@string/fiebre"
+        app:layout_constraintBottom_toTopOf="@+id/tos"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.184"
         app:layout_constraintStart_toStartOf="parent"
@@ -115,11 +50,11 @@
         app:layout_constraintVertical_bias="0.952" />
 
     <Switch
-        android:id="@+id/switch29"
+        android:id="@+id/tos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tos seca "
-        app:layout_constraintBottom_toTopOf="@+id/switch30"
+        android:text="@string/tos"
+        app:layout_constraintBottom_toTopOf="@+id/cansancio"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.196"
         app:layout_constraintStart_toStartOf="parent"
@@ -127,23 +62,38 @@
         app:layout_constraintVertical_bias="0.968" />
 
     <Switch
-        android:id="@+id/switch30"
+        android:id="@+id/cansancio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cansancio"
-        app:layout_constraintBottom_toTopOf="@+id/textView15"
+        android:text="@string/cansancio"
+        app:layout_constraintBottom_toTopOf="@+id/menosHabituales"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.922" />
 
-    <Switch
-        android:id="@+id/switch31"
+    <TextView
+        android:id="@+id/menosHabituales"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Molestias y dolores "
-        app:layout_constraintBottom_toTopOf="@+id/switch32"
+        android:text="@string/menos_habituales"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/molestia"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.18"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.97" />
+
+    <Switch
+        android:id="@+id/molestia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/molestia"
+        app:layout_constraintBottom_toTopOf="@+id/dolorGarganta"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.251"
         app:layout_constraintStart_toStartOf="parent"
@@ -151,12 +101,12 @@
         app:layout_constraintVertical_bias="0.97" />
 
     <Switch
-        android:id="@+id/switch32"
+        android:id="@+id/dolorGarganta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:text="Dolor de garganta "
-        app:layout_constraintBottom_toTopOf="@+id/switch33"
+        android:text="@string/dolor_g"
+        app:layout_constraintBottom_toTopOf="@+id/diarrea"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.24"
         app:layout_constraintStart_toStartOf="parent"
@@ -164,11 +114,11 @@
         app:layout_constraintVertical_bias="0.978" />
 
     <Switch
-        android:id="@+id/switch33"
+        android:id="@+id/diarrea"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Diarrea"
-        app:layout_constraintBottom_toTopOf="@+id/switch34"
+        android:text="@string/diarrea"
+        app:layout_constraintBottom_toTopOf="@+id/conjuntivitis"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.188"
         app:layout_constraintStart_toStartOf="parent"
@@ -176,11 +126,11 @@
         app:layout_constraintVertical_bias="0.982" />
 
     <Switch
-        android:id="@+id/switch34"
+        android:id="@+id/conjuntivitis"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Conjuntivitis"
-        app:layout_constraintBottom_toTopOf="@+id/switch35"
+        android:text="@string/conjuntivitis"
+        app:layout_constraintBottom_toTopOf="@+id/dolorCabeza"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.208"
         app:layout_constraintStart_toStartOf="parent"
@@ -188,11 +138,23 @@
         app:layout_constraintVertical_bias="0.979" />
 
     <Switch
-        android:id="@+id/switch37"
+        android:id="@+id/dolorCabeza"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pérdida del sentido del olfato o del gusto "
-        app:layout_constraintBottom_toTopOf="@+id/switch36"
+        android:text="@string/dolor_c"
+        app:layout_constraintBottom_toTopOf="@+id/perdidaSentido"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.23"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.985" />
+
+    <Switch
+        android:id="@+id/perdidaSentido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/p_sentido"
+        app:layout_constraintBottom_toTopOf="@+id/erupciones"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.571"
         app:layout_constraintStart_toStartOf="parent"
@@ -200,11 +162,38 @@
         app:layout_constraintVertical_bias="0.984" />
 
     <Switch
-        android:id="@+id/switch38"
+        android:id="@+id/erupciones"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Dificultad para respirar"
-        app:layout_constraintBottom_toTopOf="@+id/switch39"
+        android:text="@string/erupciones"
+        app:layout_constraintBottom_toTopOf="@+id/graves"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.526"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.966" />
+
+    <TextView
+        android:id="@+id/graves"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/graves"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/dificultadR"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.133"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.984" />
+
+    <Switch
+        android:id="@+id/dificultadR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dificultad_r"
+        app:layout_constraintBottom_toTopOf="@+id/dolorPecho"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.27"
         app:layout_constraintStart_toStartOf="parent"
@@ -212,10 +201,22 @@
         app:layout_constraintVertical_bias="0.985" />
 
     <Switch
-        android:id="@+id/switch40"
+        android:id="@+id/dolorPecho"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Incapacidad para hablar o moverse "
+        android:text="@string/dolor_pecho"
+        app:layout_constraintBottom_toTopOf="@+id/incapazHablar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.314"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.987" />
+
+    <Switch
+        android:id="@+id/incapazHablar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/incapacidad"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.422"
@@ -224,15 +225,15 @@
         app:layout_constraintVertical_bias="0.977" />
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/saveTracing"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="Sesion"
-        android:text="Guardar"
+        android:text="@string/btn_guardar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.809"
-        app:layout_constraintStart_toEndOf="@+id/textView14"
+        app:layout_constraintStart_toEndOf="@+id/habituales"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.099" />
 </androidx.constraintlayout.widget.ConstraintLayout>

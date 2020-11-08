@@ -16,4 +16,24 @@
     <string name="btn_salir" translatable="false">Salir</string>
     <string name="btn_guardar" translatable="false">Guardar</string>
 
+    <string name="habituales" translatable="false">Los síntomas más habituales:</string>
+    <string name="fiebre" translatable="false">Fiebre</string>
+    <string name="tos" translatable="false">Tos seca</string>
+    <string name="cansancio" translatable="false">Cansancio</string>
+
+    <string name="menos_habituales" translatable="false">Otros síntomas menos comunes:</string>
+    <string name="molestia" translatable="false">Molestias y dolores</string>
+    <string name="dolor_g" translatable="false">Dolor de garganta</string>
+    <string name="diarrea" translatable="false">Diarrea</string>
+    <string name="conjuntivitis" translatable="false">Conjuntivitis</string>
+    <string name="dolor_c" translatable="false">Dolor de cabeza</string>
+    <string name="p_sentido" translatable="false">Pérdida del sentido del olfato o del gusto</string>
+    <string name="erupciones" translatable="false">Erupciones cutáneas o pérdida del color</string>
+
+    <string name="graves" translatable="false">Los síntomas graves:</string>
+    <string name="dificultad_r" translatable="false">Dificultad para respirar</string>
+    <string name="dolor_pecho" translatable="false">Dolor o presión en el pecho</string>
+    <string name="incapacidad" translatable="false">Incapacidad para hablar o moverse</string>
+
+
 </resources>
