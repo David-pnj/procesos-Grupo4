@@ -4,6 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,6 +24,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText passLo;
     private String userLogin;
     private String passLogin;
+
     private final String fileNameUser = "Users.txt";
 
     @Override
@@ -34,91 +38,65 @@ public class LoginActivity extends AppCompatActivity {
     }
     public void Sesion (View View){
 
-        String archUsers [] = fileList();
-        boolean login = false;
-
         userLogin = userLo.getText().toString();
         passLogin = passLo.getText().toString();
 
-        if (archivoExiste(archUsers, fileNameUser)){
+        String userData[] = {userLogin, passLogin};
+        String infoUsers[] = loguear(userData);
 
-            login = loguearUsuario();
-            if (login){
+        SharedPreferences sharedpreferences = getSharedPreferences("shared_login_data",   Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.putString("UserID", "");
+        editor.putString("User" , "");
+        editor.putString("Name" , "");
+        editor.commit();
 
-                Intent sesion = new Intent(this, SesionActivity.class);
-                sesion.putExtra("name", userLogin);
-                startActivity(sesion);
-            } else {
-                Toast.makeText(this, "Usuario o contraseña incorrectas", Toast.LENGTH_SHORT).show();
-            }
+        if (!infoUsers[0].isEmpty() && !infoUsers[1].isEmpty() && !infoUsers[2].isEmpty()){
+
+
+            editor.putString("UserID", infoUsers[0]);
+            editor.putString("User" , infoUsers[1]);
+            editor.putString("Name" , infoUsers[2]);
+            editor.commit();
+
+            Intent sesion = new Intent(this, SesionActivity.class);
+            startActivity(sesion);
 
         } else{
 
-            crearFic();
-            login = loguearUsuario();
-            if (login){
-                Intent sesion = new Intent(this, SesionActivity.class);
-                sesion.putExtra("name", userLogin);
-                startActivity(sesion);
+        }
+    }
+
+    public String[] loguear (String datos[]) {
+        Integer idUser;
+        String dato1= datos[0];
+        String dato2= datos[1];
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "administracion", null, 1);
+        SQLiteDatabase baseDeDatos = admin.getWritableDatabase();
+
+        if (!datos[0].isEmpty() && !datos[1].isEmpty()){
+            Cursor fila = baseDeDatos.rawQuery
+                    ("SELECT ID_USER, USER, NAME " +
+                            "FROM USER_DATA " +
+                            "WHERE " +
+                            "USER =\"" + dato1 + "\" and  " +
+                            "PASS =\"" + dato2 + "\"", null);
+            if(fila.moveToFirst()) {
+                idUser = fila.getInt(0);
+                String info[] = {idUser.toString(), fila.getString(1), fila.getString(2)};
+                baseDeDatos.close();
+                return info;
             } else {
-                Toast.makeText(this, "Usuario o contraseña incorrectas", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"Usuario o contraseña incorrectas", Toast.LENGTH_SHORT).show();
+                baseDeDatos.close();
+                return null;
             }
 
+        } else {
+            Toast.makeText(this,"Logging fallido", Toast.LENGTH_SHORT).show();
+            return null;
         }
     }
 
-    private boolean archivoExiste(String source [], String sourceName) {
-        for (int i = 0; i<source.length; i++){
-            if (sourceName.equals(source[i])){
-                return true;
-            }
-        }
-        return false;
-    }
-
-    //Crear el fichero
-    public void crearFic(){
-        try {
-            OutputStreamWriter fout = new OutputStreamWriter(openFileOutput(fileNameUser, Context.MODE_PRIVATE));
-            fout.close();
-        } catch (Exception ex) {
-            Log.e("Ficheros", "Error al escribir fichero a memoria interna");
-        }
-    }
-
-    public boolean loguearUsuario(){
-        String[] userData = null;
-        String line = "";
-        boolean login = false;
-
-
-        try {
-            InputStreamReader archivo = new InputStreamReader(openFileInput(fileNameUser));
-            BufferedReader br = new BufferedReader(archivo);
-            line = br.readLine();
-
-            while (line != null){
-
-                userData = line.split("/");
-                String[] user = userData[0].split(":");
-                String[] pass = userData[1].split(":");
-                if (user[1].equals(userLogin) && pass[1].equals(passLogin)){
-                    login = true;
-                }
-
-                line = br.readLine();
-
-
-            }
-            br.close();
-            archivo.close();
-
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return login;
-    }
 
 }
