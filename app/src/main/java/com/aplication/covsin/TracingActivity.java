@@ -2,18 +2,23 @@ package com.aplication.covsin;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.Date;
 
 public class TracingActivity extends AppCompatActivity {
 
@@ -48,8 +53,6 @@ public class TracingActivity extends AppCompatActivity {
         userLogin = getIntent().getStringExtra("name");
         fileNameUser = userLogin+file;
 
-
-
         habituales = (TextView)findViewById(R.id.habituales);
         fiebre = (Switch)findViewById(R.id.fiebre);
         tos = (Switch)findViewById(R.id.tos);
@@ -71,53 +74,23 @@ public class TracingActivity extends AppCompatActivity {
 
     public void Sesion (View View){
 
-        String archUsers [] = fileList();
+        tracing();
+        Intent sesion = new Intent(this, SesionActivity.class);
+        startActivity(sesion);
 
-        if (archivoExiste(archUsers, fileNameUser)){
-
-            guardarTracing();
-            Intent sesion = new Intent(this, SesionActivity.class);
-            sesion.putExtra("name", userLogin);
-            startActivity(sesion);
-
-        } else{
-
-            crearFic();
-            guardarTracing();
-            Intent sesion = new Intent(this, SesionActivity.class);
-            sesion.putExtra("name", userLogin);
-            startActivity(sesion);
-
-        }
     }
 
-    private boolean archivoExiste(String source [], String sourceName) {
-        for (int i = 0; i<source.length; i++){
-            if (sourceName.equals(source[i])){
-                return true;
-            }
-        }
-        return false;
-    }
+    public void tracing () {
 
-    //Crear el fichero
-    public void crearFic(){
-        try {
-            OutputStreamWriter fout = new OutputStreamWriter(openFileOutput(fileNameUser, Context.MODE_PRIVATE));
-            fout.close();
-        } catch (Exception ex) {
-            Log.e("Ficheros", "Error al escribir fichero a memoria interna");
-        }
-    }
+        SharedPreferences prefs = getSharedPreferences("shared_login_data",   Context.MODE_PRIVATE);
+        String idUser = prefs.getString("UserID", "");
+        long millis=System.currentTimeMillis();
+        java.sql.Date date=new java.sql.Date(millis);
 
-    public void guardarTracing(){
-
-        String saveHabituales = habituales.getText().toString();
         String saveFiebre = fiebre.getText().toString()+": "+fiebre.isChecked();
         String saveTos = tos.getText().toString()+": "+tos.isChecked();
         String saveCansancio = cansancio.getText().toString()+": "+cansancio.isChecked();
 
-        String saveMenosHabituales = menosHabituales.getText().toString();
         String saveMolestia = molestia.getText().toString()+": "+molestia.isChecked();
         String saveDolorGarganta = dolorGarganta.getText().toString()+": "+dolorGarganta.isChecked();
         String saveDiarrea = diarrea.getText().toString()+": "+diarrea.isChecked();
@@ -126,58 +99,34 @@ public class TracingActivity extends AppCompatActivity {
         String savePerdidaSentido = perdidaSentido.getText().toString()+": "+perdidaSentido.isChecked();
         String saveErupciones = erupciones.getText().toString()+": "+erupciones.isChecked();
 
-        String saveGraves = graves.getText().toString();
         String saveDificultadR = dificultadR.getText().toString()+": "+dificultadR.isChecked();
         String saveDolorPecho = dolorPecho.getText().toString()+": "+dolorPecho.isChecked();
         String saveIncapazHablar = incapazHablar.getText().toString()+": "+incapazHablar.isChecked();
 
-        String lines = "";
-        String line = "";
-        int i = 0;
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "administracion", null, 1);
+        SQLiteDatabase baseDeDatos = admin.getWritableDatabase();
 
-        try {
-            InputStreamReader archivo = new InputStreamReader(openFileInput(fileNameUser));
-            BufferedReader br = new BufferedReader(archivo);
-            line = br.readLine();
+        ContentValues tra = new ContentValues();
 
-            while (line != null){
-                lines = lines + line +"\n";
-                line = br.readLine();
+        tra.put("ID_USER", Integer.parseInt(idUser));
+        tra.put("DATE", String.valueOf(date));
+        tra.put("FIEBRE", saveFiebre);
+        tra.put("TOS_SECA", saveTos);
+        tra.put("CANSANCIO", saveCansancio);
+        tra.put("MOLESTIAS_DOLORES", saveMolestia);
+        tra.put("DOLOR_GARGANTA", saveDolorGarganta);
+        tra.put("DIARREA", saveDiarrea);
+        tra.put("CONJUNTIVITIS", saveConjuntivitis);
+        tra.put("DOLOR_CABEZA", saveDolorCabeza);
+        tra.put("PERDIDA_UN_SENTIDO", savePerdidaSentido);
+        tra.put("ERUPCIONES_CUTÁNEAS", saveErupciones);
+        tra.put("DIFICULTAD_RESPIRAR", saveDificultadR);
+        tra.put("DOLOR_PECHO", saveDolorPecho);
+        tra.put("INCAPACIDAD_HABLAR_MOVERSE", saveIncapazHablar);
 
-            }
-            br.close();
-            archivo.close();
+        baseDeDatos.insert("RECORD", null, tra);
 
-            OutputStreamWriter fichUsers = new OutputStreamWriter(openFileOutput(fileNameUser, Context.MODE_PRIVATE));
-            if (lines != null ){
-                fichUsers.write(lines);
-            }
-            fichUsers.write("*Nueva entrada del usuario: "+userLogin+"\n"+
-                    saveHabituales+"\n"+
-                    saveFiebre+"\n"+
-                    saveTos+"\n"+
-                    saveCansancio+"\n"+
-                    saveMenosHabituales+"\n"+
-                    saveMolestia+"\n"+
-                    saveDolorGarganta+"\n"+
-                    saveDiarrea+"\n"+
-                    saveConjuntivitis+"\n"+
-                    saveDolorCabeza+"\n"+
-                    savePerdidaSentido+"\n"+
-                    saveErupciones+"\n"+
-                    saveGraves+"\n"+
-                    saveDificultadR+"\n"+
-                    saveDolorPecho+"\n"+
-                    saveIncapazHablar+"\n"+
-                    "*"+"\n"+"*"+"\n");
-
-            fichUsers.flush();
-            fichUsers.close();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        Toast.makeText(this,"Registro exitoso", Toast.LENGTH_SHORT).show();
+        baseDeDatos.close();
     }
-
 }

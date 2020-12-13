@@ -2,12 +2,17 @@ package com.aplication.covsin;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.aplication.covsin.models.Usuarios;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -19,9 +24,15 @@ public class RegisterActivity extends AppCompatActivity {
 
     private EditText userRe;
     private EditText passRe;
+    private EditText nameRe;
+    private EditText birthDateRe;
     private String userSave;
     private String passSave;
-    private final String fileNameUser = "Users.txt";
+    private String nameSave;
+    private String birthDateSave;
+
+    public Usuarios usuario;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,83 +41,49 @@ public class RegisterActivity extends AppCompatActivity {
 
         userRe = (EditText)findViewById(R.id.editUserRe);
         passRe = (EditText)findViewById(R.id.editPasswordRe);
+        nameRe = (EditText)findViewById(R.id.editNameRe);
+        birthDateRe = (EditText)findViewById(R.id.editBirthRe);
 
     }
 
     //Método para botones
     public void Login (View View){
-
-        String archUsers [] = fileList();
-
-        if (archivoExiste(archUsers, fileNameUser)){
-
-            guardarUsuario();
-            Intent login = new Intent(this, LoginActivity.class);
-            startActivity(login);
-
-        } else{
-
-            crearFic();
-            guardarUsuario();
-            Intent login = new Intent(this, LoginActivity.class);
-            startActivity(login);
-
-        }
-    }
-
-    private boolean archivoExiste(String source [], String sourceName) {
-        for (int i = 0; i<source.length; i++){
-            if (sourceName.equals(source[i])){
-                return true;
-            }
-        }
-        return false;
-    }
-
-    //Crear el fichero
-    public void crearFic(){
-        try {
-            OutputStreamWriter fout = new OutputStreamWriter(openFileOutput(fileNameUser, Context.MODE_PRIVATE));
-            fout.close();
-        } catch (Exception ex) {
-            Log.e("Ficheros", "Error al escribir fichero a memoria interna");
-        }
-    }
-
-
-    public void guardarUsuario(){
         userSave = userRe.getText().toString();
         passSave = passRe.getText().toString();
-        String lines = "";
-        String line = "";
-        int i = 0;
+        nameSave = nameRe.getText().toString();
+        birthDateSave = birthDateRe.getText().toString();
 
-        try {
-            InputStreamReader archivo = new InputStreamReader(openFileInput(fileNameUser));
-            BufferedReader br = new BufferedReader(archivo);
-            line = br.readLine();
+        String userData[] = {userSave, passSave, nameSave, birthDateSave};
 
-            while (line != null){
-                lines = lines + line +"\n";
-                line = br.readLine();
+        Registrar(userData);
 
-            }
-            br.close();
-            archivo.close();
+        userRe.setText("");
+        passRe.setText("");
+        nameRe.setText("");
+        birthDateRe.setText("");
 
-            OutputStreamWriter fichUsers = new OutputStreamWriter(openFileOutput(fileNameUser, Context.MODE_PRIVATE));
-            if (lines != null ){
-                    fichUsers.write(lines);
-            }
-            fichUsers.write("usuario:"+userSave+"/pass:"+passSave);
-            fichUsers.flush();
-            fichUsers.close();
+        Intent login = new Intent(this, LoginActivity.class);
+        startActivity(login);
+    }
 
-        } catch (IOException e) {
-            e.printStackTrace();
+    public void Registrar (String datos[]) {
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "administracion", null, 1);
+        SQLiteDatabase baseDeDatos = admin.getWritableDatabase();
+
+        if (!datos[0].isEmpty() && !datos[1].isEmpty() && !datos[2].isEmpty() && !datos[3].isEmpty()){
+            ContentValues sub = new ContentValues();
+
+            sub.put("USER", datos[0]);
+            sub.put("PASS", datos[1]);
+            sub.put("NAME", datos[2]);
+            sub.put("BIRTHDATE", datos[3]);
+            baseDeDatos.insert("USER_DATA", null, sub);
+
+            Toast.makeText(this,"Registro exitoso", Toast.LENGTH_SHORT).show();
+            baseDeDatos.close();
+        } else {
+            Toast.makeText(this, "Registro fallido", Toast.LENGTH_SHORT).show();
         }
 
     }
-
-
 }

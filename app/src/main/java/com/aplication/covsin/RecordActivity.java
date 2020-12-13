@@ -4,11 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -33,76 +37,66 @@ public class RecordActivity extends AppCompatActivity {
         muestraRecord.setMovementMethod(new ScrollingMovementMethod());
 
 
-        String archUsers [] = fileList();
         String recor = "";
 
+        recor = record();
+        muestraRecord.setText(recor);
 
-        if (archivoExiste(archUsers, fileNameUser)){
-
-            recor = cargarTracing();
-            muestraRecord.setText(recor);
-
-        } else{
-
-            crearFic();
-            recor = cargarTracing();
-            muestraRecord.setText(recor);
-
-        }
     }
 
     public void Sesion (View View){
 
         Intent sesion = new Intent(this, SesionActivity.class);
-        sesion.putExtra("name", userLogin);
         startActivity(sesion);
 
-
-
-    }
-    private boolean archivoExiste(String source [], String sourceName) {
-        for (int i = 0; i<source.length; i++){
-            if (sourceName.equals(source[i])){
-                return true;
-            }
-        }
-        return false;
     }
 
-    //Crear el fichero
-    public void crearFic(){
-        try {
-            OutputStreamWriter fout = new OutputStreamWriter(openFileOutput(fileNameUser, Context.MODE_PRIVATE));
-            fout.close();
-        } catch (Exception ex) {
-            Log.e("Ficheros", "Error al escribir fichero a memoria interna");
-        }
-    }
-
-    public String cargarTracing(){
-
+    public String record (){
         String lines = "";
-        String line = "";
-        int i = 0;
+        SharedPreferences prefs = getSharedPreferences("shared_login_data",   Context.MODE_PRIVATE);
+        String idUser = prefs.getString("UserID", "");
+        String name = prefs.getString("Name", "");
 
-        try {
-            InputStreamReader archivo = new InputStreamReader(openFileInput(fileNameUser));
-            BufferedReader br = new BufferedReader(archivo);
-            line = br.readLine();
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "administracion", null, 1);
+        SQLiteDatabase baseDeDatos = admin.getWritableDatabase();
 
-            while (line != null){
-                lines = lines + line+"\n";
-                line = br.readLine();
+        if (!idUser.isEmpty()){
+            Cursor fila = baseDeDatos.rawQuery("SELECT DATE, FIEBRE, TOS_SECA, CANSANCIO, MOLESTIAS_DOLORES, DOLOR_GARGANTA, DIARREA, CONJUNTIVITIS, DOLOR_CABEZA, PERDIDA_UN_SENTIDO, ERUPCIONES_CUTÁNEAS, DIFICULTAD_RESPIRAR, DOLOR_PECHO, INCAPACIDAD_HABLAR_MOVERSE " +
+                    "FROM RECORD " +
+                    "WHERE " +
+                    "ID_USER =" + idUser, null);
+            if(fila.moveToFirst()) {
+                while (!fila.isAfterLast()) {
+                    lines = lines + ("*Nueva entrada del usuario: "+name+" a fecha: "+fila.getString(fila.getColumnIndex("DATE"))+"\n"+
+                            fila.getString(fila.getColumnIndex("FIEBRE"))+"\n"+
+                            fila.getString(fila.getColumnIndex("TOS_SECA"))+"\n"+
+                            fila.getString(fila.getColumnIndex("CANSANCIO"))+"\n"+
+                            fila.getString(fila.getColumnIndex("MOLESTIAS_DOLORES"))+"\n"+
+                            fila.getString(fila.getColumnIndex("DOLOR_GARGANTA"))+"\n"+
+                            fila.getString(fila.getColumnIndex("DIARREA"))+"\n"+
+                            fila.getString(fila.getColumnIndex("CONJUNTIVITIS"))+"\n"+
+                            fila.getString(fila.getColumnIndex("DOLOR_CABEZA"))+"\n"+
+                            fila.getString(fila.getColumnIndex("PERDIDA_UN_SENTIDO"))+"\n"+
+                            fila.getString(fila.getColumnIndex("ERUPCIONES_CUTÁNEAS"))+"\n"+
+                            fila.getString(fila.getColumnIndex("DIFICULTAD_RESPIRAR"))+"\n"+
+                            fila.getString(fila.getColumnIndex("DOLOR_PECHO"))+"\n"+
+                            fila.getString(fila.getColumnIndex("INCAPACIDAD_HABLAR_MOVERSE"))+"\n"+
+                            "*"+"\n"+"*"+"\n");
 
+                    fila.moveToNext();
+                }
+                baseDeDatos.close();
+                return lines;
+            } else {
+                Toast.makeText(this,"No hay datos del usuario", Toast.LENGTH_SHORT).show();
+                baseDeDatos.close();
+                return null;
             }
-            br.close();
-            archivo.close();
 
-        } catch (IOException e) {
-            e.printStackTrace();
+        } else {
+            Toast.makeText(this,"Logging fallido", Toast.LENGTH_SHORT).show();
+            return null;
         }
-
-        return lines;
     }
 
 }
