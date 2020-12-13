@@ -8,13 +8,11 @@
     <string name="menu_sesion" translatable="false">Sesión</string>
     <string name="record" translatable="false">Historial</string>
     <string name="tracing" translatable="false">Seguimiento</string>
-    <string name="iniciar" translatable="false">Iniciar</string>
+    <string name="iniciar" translatable="false">Iniciar Sesion</string>
     <string name="user" translatable="false">Usuario</string>
     <string name="pass" translatable="false">Contraseña</string>
     <string name="name" translatable="false">Nombre comleto</string>
     <string name="birth_date" translatable="false">Fecha de nacimiento</string>
-    <string name="itro_user" translatable="false">Intrduzca su usuario</string>
-    <string name="intro_pass" translatable="false">Intrduzca su contraseña</string>
     <string name="intro_name" translatable="false">Intrduzca su nombre</string>
     <string name="intro_birth_date" translatable="false">YYYY-MM-DD</string>
     <string name="faq" translatable="false">FAQ</string>
@@ -26,6 +24,8 @@
     <string name="faq_pregunta6" translatable="false">¿Cómo saber si soy persona de riesgo?</string>
     <string name="btn_tutorial" translatable="false">Tutorial</string>
     <string name="btn_mostrar" translatable="false">Mostrar</string>
+    <string name="itro_user" translatable="false">Nombre de Usuario</string>
+    <string name="intro_pass" translatable="false">Contraseña</string>
     <string name="btn_salir" translatable="false">Salir</string>
     <string name="btn_guardar" translatable="false">Guardar</string>
 

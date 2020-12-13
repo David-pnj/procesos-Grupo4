@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.aplication.covsin.models.Usuarios;
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -64,6 +65,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         Intent login = new Intent(this, LoginActivity.class);
         startActivity(login);
+        Animatoo.animateSlideRight(this);
     }
 
     public void Registrar (String datos[]) {
