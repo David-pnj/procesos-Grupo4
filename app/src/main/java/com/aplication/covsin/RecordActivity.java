@@ -14,6 +14,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -48,6 +50,7 @@ public class RecordActivity extends AppCompatActivity {
 
         Intent sesion = new Intent(this, SesionActivity.class);
         startActivity(sesion);
+        Animatoo.animateSlideRight(this);
 
     }
 
