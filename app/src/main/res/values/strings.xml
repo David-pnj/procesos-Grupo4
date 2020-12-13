@@ -11,7 +11,7 @@
     <string name="iniciar" translatable="false">Iniciar Sesion</string>
     <string name="user" translatable="false">Usuario</string>
     <string name="pass" translatable="false">Contraseña</string>
-    <string name="name" translatable="false">Nombre comleto</string>
+    <string name="name" translatable="false">Nombre completo</string>
     <string name="birth_date" translatable="false">Fecha de nacimiento</string>
     <string name="intro_name" translatable="false">Intrduzca su nombre</string>
     <string name="intro_birth_date" translatable="false">YYYY-MM-DD</string>
