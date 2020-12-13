@@ -16,31 +16,27 @@ public class MenuActivity extends AppCompatActivity {
 
     //Método para botones
     public void Login (View View){
-
         Intent login = new Intent(this, LoginActivity.class);
         startActivity(login);
-
-
     }
-    public void Register (View View){
 
+    public void Register (View View){
         Intent register = new Intent(this, RegisterActivity.class);
         startActivity(register);
-
-
     }
-    public void Symtoms (View View){
 
+    public void Symtoms (View View){
         Intent symtons = new Intent(this, SymptomsActivity.class);
         startActivity(symtons);
-
-
     }
-    public void Map (View View){
 
+    public void Map (View View){
         Intent map = new Intent(this, MapActivity.class);
         startActivity(map);
+    }
 
-
+    public void Frequent (View View){
+        Intent freque =new Intent(this, Faq2Activity.class);
+        startActivity(freque);
     }
 }
