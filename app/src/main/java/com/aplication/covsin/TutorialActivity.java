@@ -2,8 +2,10 @@ package com.aplication.covsin;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.MediaController;
 import android.widget.VideoView;
 
@@ -22,6 +24,11 @@ public class TutorialActivity extends AppCompatActivity {
         MediaController mediaController = new MediaController(this);
         videoTutorial.setMediaController(mediaController);
         mediaController.setAnchorView(videoTutorial);
+    }
+
+    public void Menu (View View){
+        Intent menu =new Intent(this, MenuActivity.class);
+        startActivity(menu);
     }
 
 }
