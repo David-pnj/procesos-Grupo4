@@ -3,22 +3,14 @@ package com.aplication.covsin;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.aplication.covsin.models.Usuarios;
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 
 
 public class RegisterActivity extends AppCompatActivity {
@@ -32,7 +24,6 @@ public class RegisterActivity extends AppCompatActivity {
     private String nameSave;
     private String birthDateSave;
 
-    public Usuarios usuario;
 
 
     @Override

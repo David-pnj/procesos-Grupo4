@@ -42,8 +42,16 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void Frequent (View View){
-        Intent freque =new Intent(this, Faq2Activity.class);
+        Intent freque = new Intent(this, Faq2Activity.class);
         startActivity(freque);
         Animatoo.animateSlideRight(this);
     }
+
+    public void Tutorial (View View){
+        Intent freque = new Intent(this, TutorialActivity.class);
+        startActivity(freque);
+    }
+
+
+
 }
