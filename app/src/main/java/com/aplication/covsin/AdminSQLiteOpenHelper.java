@@ -36,6 +36,13 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper{
                 "INCAPACIDAD_HABLAR_MOVERSE TEXTO NOT NULL, " +
                 "FOREIGN KEY(ID_USER) REFERENCES USER_DATA(ID_USER))");
 
+        covsin.execSQL("create table RATING(ID_RATING INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "ID_USER INT NOT NULL, " +
+                "DATE DATE NOT NULL, " +
+                "DESCRIPCION TEXTO NOT NULL, " +
+                "PUNTOS TEXTO NOT NULL, " +
+                "FOREIGN KEY(ID_USER) REFERENCES USER_DATA(ID_USER))");
+
     }
 
     @Override
