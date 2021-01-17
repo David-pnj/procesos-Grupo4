@@ -19,7 +19,6 @@ public class SesionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sesion);
         userLogin = getIntent().getStringExtra("name");
 
-
     }
     public void Symtoms (View View){
 
@@ -27,15 +26,12 @@ public class SesionActivity extends AppCompatActivity {
         startActivity(symtons);
         Animatoo.animateSlideRight(this);
 
-
-
     }
     public void Map (View View){
 
         Intent map = new Intent(this, MapActivity.class);
         startActivity(map);
         Animatoo.animateSlideRight(this);
-
 
     }
     public void Tracing (View View){
@@ -45,7 +41,6 @@ public class SesionActivity extends AppCompatActivity {
         startActivity(tracing);
         Animatoo.animateSlideRight(this);
 
-
     }
     public void Record (View View){
 
@@ -54,6 +49,13 @@ public class SesionActivity extends AppCompatActivity {
         startActivity(record);
         Animatoo.animateSlideRight(this);
 
+    }
+    public void Rating (View View){
+
+        Intent rating = new Intent(this, Rating1Activity.class);
+        rating.putExtra("name", userLogin);
+        startActivity(rating);
+        Animatoo.animateSlideRight(this);
 
     }
 }

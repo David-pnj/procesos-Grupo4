@@ -52,6 +52,10 @@ public class MenuActivity extends AppCompatActivity {
         startActivity(freque);
     }
 
+    public void HospitalMap (View View){
+        Intent hospi = new Intent(this, HospitalMapsActivity.class);
+        startActivity(hospi);
+    }
 
 
 }
