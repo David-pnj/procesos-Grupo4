@@ -16,6 +16,10 @@
     <string name="intro_name" translatable="false">Intrduzca su nombre</string>
     <string name="intro_birth_date" translatable="false">YYYY-MM-DD</string>
     <string name="faq" translatable="false">FAQ</string>
+    <string name="hospital" translatable="false">Hospitales</string>
+    <string name="rating" translatable="false">Valorar app</string>
+    <string name="valorar" translatable="false">Valorar</string>
+    <string name="comentar" translatable="false">Comentar</string>
     <string name="faq_pregunta1" translatable="false">¿Puedo contagiar con una mascarilla quirúrgica?</string>
     <string name="faq_pregunta2" translatable="false">¿Qué hago si estuve en contacto con un positivo?</string>
     <string name="faq_pregunta3" translatable="false">¿Pueden los niños o los adolescentes contraer la COVID‑19?</string>
@@ -47,6 +51,7 @@
     <string name="dificultad_r" translatable="false">Dificultad para respirar</string>
     <string name="dolor_pecho" translatable="false">Dolor o presión en el pecho</string>
     <string name="incapacidad" translatable="false">Incapacidad para hablar o moverse</string>
+    <string name="title_activity_hospital_maps">Map</string>
 
 
 </resources>
